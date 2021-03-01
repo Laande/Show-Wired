@@ -4,24 +4,13 @@ from g_python.hmessage import Direction, HMessage
 
 extension_info = {
     "title": "Show Wireds",
-    "description": "Allow you to see the wired",
+    "description": "Allow you to see the wireds",
     "version": "2.0",
     "author": "Lande"
 }
 
 ext = Extension(extension_info, sys.argv)
 ext.start()
-
-
-def on_connection_start():
-    print('Connected with: {}:{}'.format(ext.connection_info['host'], ext.connection_info['port']))
-    if ext.harble_api:
-        print("Harble API :" + ext.harble_api)
-    else:
-        print("No Harble API detected")
-
-
-ext.on_event('connection_start', on_connection_start)
 
 
 list_wireds = []
@@ -83,7 +72,6 @@ def speech(message):
 
 def clear_user(message):
     list_wireds.clear()
-    print("room changed")
 
 
 ext.intercept(Direction.TO_CLIENT, hide_wired, 2703)
